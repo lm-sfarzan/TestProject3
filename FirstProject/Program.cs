@@ -7,3 +7,6 @@ Console.WriteLine("5th line!!");
 Console.WriteLine("6th line!!");
 Console.WriteLine("7th line!!");
 Console.WriteLine("8th line!!");
+Console.WriteLine("9th line!!");
+Console.WriteLine("10th line!!");
+
