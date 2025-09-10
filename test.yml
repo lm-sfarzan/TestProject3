@@ -1,0 +1,41 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+# [optional], is displayed on your repos action page
+name: .NET
+
+# [required], to define the name of events that trigger the workflow
+on:
+  # event name
+  push:
+    # to filter the push event only for master branch
+    branches: [ "master" ]
+  # event name
+  pull_request:
+    # to filter the pull_request event only for master branch
+    branches: [ "master" ]
+
+# [required] jobs to get executed, grouping a set of actions to be executed
+jobs:
+  build:
+    # to define the type of machine** to run the job on    
+    runs-on: ubuntu-latest
+    
+    # [required] sequences of tasks, steps can run commands, setup tasks OR run an action
+    steps:
+    # selects an action from GitHub/actions* then it uses the 3rd version of "checkout" command
+    - uses: actions/checkout@v3
+    # name for the step to display on GitHub
+    - name: Setup .NET
+      # setup-dotnet@v3 is another repository in actions list preparing the environment with dotnet 
+      uses: actions/setup-dotnet@v3
+      # to define the input parameters for the action "setup-dotnet"
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      # runs a command-line command (different than "uses" applied for a repository in actions)
+      run: dotnet restore
+    - name: Build
+       # call dotnet build 
+       run: dotnet build --no-restore and run it
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
